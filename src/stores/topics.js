@@ -7,6 +7,9 @@ export const useTopicStore = defineStore({
         async getTopics() {
         return axiosApi.get("topics")
         },
+        async getTopicsFiltered(data) {
+        return axiosApi.get("topics/filter", { params: data })
+        },
         async getTopic(id) {
         return axiosApi.get(`topics/${id}`)
         },
