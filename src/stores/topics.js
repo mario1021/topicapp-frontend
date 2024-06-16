@@ -22,5 +22,8 @@ export const useTopicStore = defineStore({
         async deleteTopic(id) {
         return axiosApi.delete(`topics/${id}`);
         },
+        async getMentionsFiltered(data) {
+        return axiosApi.get("mentions/filter", { params: data });
+        }
     },
     });

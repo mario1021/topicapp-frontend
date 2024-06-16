@@ -4,6 +4,7 @@ import LoginView from '@/views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import TopicsListView from '@/views/TopicsListView.vue'
 import ArticlesView from '@/views/ArticlesView.vue'
+import TopicDetailView from '@/views/TopicDetailView.vue'
 
 
 const router = createRouter({
@@ -13,6 +14,12 @@ const router = createRouter({
       path: '/',
       name: 'topics',
       component: TopicsListView
+    },
+    {
+      path: '/topics/:id',
+      name: 'topic',
+      component: TopicDetailView,
+      props: true
     },
     {
       path: '/articles',

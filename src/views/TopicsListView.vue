@@ -8,6 +8,7 @@ import DataTable from 'datatables.net-vue3'
 import DataTablesCore from 'datatables.net-bs5';
 DataTable.use(DataTablesCore);
 
+
 const topicStore = useTopicStore();
 const router = useRouter();
 
@@ -16,8 +17,18 @@ const state = reactive({
   cols: [
     { title: "#", data: null, render: (data, type, row, meta) => meta.row + 1 },
     { title: "Nombre", data: "title" },
-    { title: "Sentimiento", data: "sentiment" },
-    { title: "Número de menciones", data: "total_mentions" },
+    { title: "Sentimiento", data: "sentiment", className: "text-center"},
+    { title: "Número de menciones", data: "total_mentions", className: "text-center"},
+    { title: "", data: null, orderable:false, className:"justify-content-center", render: (data, type, row) => `
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          </button>
+           <ul class="dropdown-menu">
+            <li><a class="dropdown-item view-detail" href="#" data-id="${row.id}">Ver Detalle</a></li>
+            <li><a class="dropdown-item delete-topic" href="#" data-id="${row.id}">Borrar</a></li>
+          </ul>
+        </div>
+      ` }
   ],
 });
 
@@ -38,6 +49,15 @@ const createTopic = async (title) => {
   await topicStore.createTopic(title);
   await getTopics();
   showCreateModal.value = false;
+};
+
+const viewDetail = (id) => {
+  router.push({ name: 'topic', params: { id } });
+};
+
+const deleteTopic = async (id) => {
+  await topicStore.deleteTopic(id);
+  await getTopics();
 };
 
 const options = {
@@ -68,6 +88,20 @@ const options = {
   paging: true,
   searching: true,
   responsive: true,
+  createdRow: (row, data, dataIndex) => {
+    const viewDetailBtn = row.querySelector('.view-detail');
+    const deleteTopicBtn = row.querySelector('.delete-topic');
+
+    viewDetailBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      viewDetail(data.id);
+    });
+
+    deleteTopicBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      deleteTopic(data.id);
+    });
+  }
 };
 </script>
 
@@ -75,18 +109,27 @@ const options = {
   <HeaderBar :select="'topic'" />
 
   <div>
-    <div class="d-flex justify-content-end align-items-center me-3 mb-3 mt-3">
-      <button class="btn btn-primary me-2" @click="showCreateModal = true">Crear nuevo tópico</button>
+    <div class="card mt-3 mx-2">
+      <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center me-3 mb-3 mt-3">
+        <h5>Tópicos</h5>
+        <button class="btn btn-primary me-2" @click="showCreateModal = true">Crear nuevo tópico</button>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <DataTable :data="state.topics" :columns="state.cols" :options="options" class="table table-hover table-striped" />
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <DataTable :data="state.topics" :columns="state.cols" :options="options" class="table table-hover table-striped" />
+          </div>
         </div>
       </div>
     </div>
+    </div>
   </div>
+
 
   <CreateTopicComponent :show="showCreateModal" @close="showCreateModal = false" @submit="createTopic" />
 </template>
@@ -118,8 +161,17 @@ const options = {
 
 table thead th {
     border: 0px solid white;
-    background-color: #F2E7FE !important;
+    background-color: #c997f9 !important;
+    color: white !important;
+}
 
+.btn-secondary{
+  background-color: #BF82F8 !important;
+  border-color: #BF82F8;
+}
+
+.dropdown-toggle::after{
+  margin-left: 0% !important;
 }
 
 </style>
