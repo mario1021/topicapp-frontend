@@ -1,35 +1,43 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+:root {
+  --header-color: #9227EC;
+  --background-color: #F2F2F0;
+  --card-background-color: #ffff;
+  --button-background-color: #9227EC;
+  --button-text-color: white;
+  --redirect-color: #5780ED;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  background-color: var(--background-color);
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.card-custom {
+  background-color: var(--card-background-color);
+  border-radius: 1rem;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.card-header-custom {
+  background-color: var(--header-color);
+  color: white;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.btn-custom {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+}
+
+.btn-custom:hover {
+  background-color: #4B108D;
+  color: white;
+}
+
+
+
+.navbar {
+  background-color: var(--header-color);
+
+}
+
+.redirect{
+  color: var(--redirect-color);
 }
