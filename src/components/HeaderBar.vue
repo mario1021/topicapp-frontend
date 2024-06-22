@@ -23,7 +23,7 @@ defineProps(['select'])
                     </div>
                     <div class="d-flex align-items-center">
                         <button id="btnLogin" type="button" class="btn btn-link-light px-3 me-2">
-                            <router-link id="btnLogin" to="/"><font-awesome-icon :icon="['fas', 'right-to-bracket']" inverse /></router-link>
+                            <router-link id="btnLogin" to="/login"><font-awesome-icon :icon="['fas', 'right-to-bracket']" inverse /></router-link>
                         </button>
                     </div>
                 </div>

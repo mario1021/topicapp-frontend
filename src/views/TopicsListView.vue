@@ -38,6 +38,16 @@ const search = ref('');
 const getTopics = async () => {
     const res = await topicStore.getTopics();
     state.topics = res.data;
+    //en la columna de sentimiento, cambiemos POS por Positivo, NEG por Negativo y NEU por Neutral
+    state.topics.forEach((topic) => {
+      if (topic.sentiment === 'POS') {
+        topic.sentiment = 'Positivo';
+      } else if (topic.sentiment === 'NEG') {
+        topic.sentiment = 'Negativo';
+      } else {
+        topic.sentiment = 'Neutral';
+      }
+    });
 };
 
 onMounted(async () => {

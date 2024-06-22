@@ -119,6 +119,10 @@ const state = reactive({
 const getTopic = async () => {
   const topic = await topicStore.getTopic(props.id);
   state.topic = topic.data;
+  state.topic = {
+    ...state.topic,
+    sentiment: state.topic.sentiment === 'POS' ? 'Positivo' : state.topic.sentiment === 'NEG' ? 'Negativo' : 'Neutral'
+  };
 };
 
 const getMentionsFiltered = async () => {
