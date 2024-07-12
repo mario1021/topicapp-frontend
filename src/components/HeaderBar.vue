@@ -14,7 +14,7 @@ defineProps(['select'])
                     <div class="d-flex justify-content-center w-100">
                         <ul class="navbar-nav">
                             <li class="nav-item mx-3">
-                                <router-link class="nav-link" :class="{ active: select == 'topic' }" to="/">Tópicos</router-link>
+                                <router-link class="nav-link" :class="{ active: select == 'topic' }" to="/topics">Tópicos</router-link>
                             </li>
                             <li class="nav-item mx-3">
                                 <router-link class="nav-link" :class="{ active: select == 'article' }" to="/articles">Noticias</router-link>

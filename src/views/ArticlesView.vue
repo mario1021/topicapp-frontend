@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="articles">
-                                <div class="card" v-for="article in state.articles" :key="article.id">
+                                <div class="card mb-2" v-for="article in state.articles" :key="article.id">
                                     <div class="card-header" @click="toggleArticle(article.id)">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span><strong>{{ article.title }}</strong></span>

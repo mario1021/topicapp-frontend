@@ -23,7 +23,7 @@
               </div>
   
               <div class="d-flex justify-content-center">
-                <button class="btn btn-custom btn-lg px-5" type="submit">Sign Up</button>
+                <button class="btn btn-custom btn-lg px-5" type="submit">Crear cuenta</button>
               </div>
   
               <p class="mt-3 text-center">¿Ya tienes cuenta? <router-link to="/login" class="redirect fw-bold">Iniciar sesión</router-link></p>

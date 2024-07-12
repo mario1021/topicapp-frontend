@@ -22,8 +22,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="trend">Tendencia</label>
+                                    <div class="d-flex space-between">
                                     <input type="text" class="form-control" id="trend" :value="state.topic ? state.topic.trend : 'Cargando...'"
                                      disabled> 
+                                    <font-awesome-icon :icon="['fas', 'arrow-up']" v-if="state.topic && state.topic.trend >1 " /> 
+                                    <font-awesome-icon :icon="['fas',  'arrow-down']" v-if="state.topic && state.topic.trend <1 " />
+                                    <font-awesome-icon :icon="['fas', 'equals']" />
+                                    </div>
                                 </div>
                             </div>
 
